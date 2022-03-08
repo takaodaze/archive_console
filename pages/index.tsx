@@ -1,14 +1,14 @@
 import styled from "@emotion/styled";
 import { Layout } from "components/Layout";
 import { PostCard } from "components/PostCard/PostCard";
-import { getAllSlugs, getPostBySlug } from "lib/posts";
+import { getAllPostId, getPostById } from "lib/posts";
 import { InferGetStaticPropsType, NextPage } from "next";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticProps = async () => {
-    const allSlugs = getAllSlugs();
-    const allPosts = allSlugs.map((slug) => getPostBySlug(slug));
+    const allSlugs = getAllPostId();
+    const allPosts = allSlugs.map((slug) => getPostById(slug));
     return {
         props: { allPosts },
     };
