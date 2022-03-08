@@ -1,6 +1,6 @@
 ---
 name: 'Component'
-root: 'src/components'
+root: 'components'
 output: '**/*'
 ignore: []
 questions:
