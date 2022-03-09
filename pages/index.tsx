@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { Layout } from "components/Layout";
-import { PostCard } from "components/PostCard/PostCard";
-import { getAllPost } from "lib/posts";
+import { Layout } from "../components/Layout";
+import { PostCard } from "../components/PostCard/PostCard";
+import { getAllPost } from "../lib/posts";
 import { InferGetStaticPropsType, NextPage } from "next";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
@@ -15,10 +15,14 @@ export const getStaticProps = async () => {
 
 const Index: NextPage<Props> = (props) => {
     return (
-        <Layout title="all post">
+        <Layout title="all post page">
             <Flex>
                 {props.allPosts.map((post, idx) => (
-                    <PostCard key={`post_card_${idx}`} title={post.title} />
+                    <PostCard
+                        key={`post_card_${idx}`}
+                        title={post.title}
+                        id={post.id}
+                    />
                 ))}
             </Flex>
         </Layout>

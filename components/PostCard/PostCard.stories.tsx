@@ -12,6 +12,7 @@ const Template: ComponentStory<typeof PostCard> = (args) => (
 
 const commonArg: Parameters<typeof PostCard>[0] = {
     title: "Title",
+    id: "1",
 };
 
 export const Story = Template.bind({});

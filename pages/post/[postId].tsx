@@ -1,7 +1,9 @@
-import { getAllPost, getPostById, Post } from "lib/posts";
+import { getAllPost, getPostById, Post } from "../../lib/posts";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ParsedUrlQuery } from "node:querystring";
 import { VFC } from "react";
+import { Layout } from "../../components/Layout";
+import { TextLine } from "../../components/TextLine/TextLine";
 
 type Params = ParsedUrlQuery & {
     postId: Post["id"];
@@ -34,9 +36,13 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 };
 
 const PostContentPage: VFC<Props> = (props) => {
-    console.log("props", props);
-
-    return <div></div>;
+    return (
+        <Layout title={props.post.title}>
+            {props.post.content.split("\n").map((line, idx) => (
+                <TextLine key={`line_${idx}`} content={line} duration={100} />
+            ))}
+        </Layout>
+    );
 };
 
 export default PostContentPage;
