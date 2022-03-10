@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from "node:querystring";
 import { VFC } from "react";
 import { Layout } from "../../components/Layout";
 import { TextLine } from "../../components/TextLine/TextLine";
+import { PostTitle } from "../../components/PostTitle/PostTitle";
 
 type Params = ParsedUrlQuery & {
     postId: Post["id"];
@@ -38,8 +39,9 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
 const PostContentPage: VFC<Props> = (props) => {
     return (
         <Layout title={props.post.title}>
+            <PostTitle>{props.post.title}</PostTitle>
             {props.post.content.split("\n").map((line, idx) => (
-                <TextLine key={`line_${idx}`} content={line} duration={100} />
+                <TextLine key={`line_${idx}`} content={line} duration={50} />
             ))}
         </Layout>
     );
