@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 
     return {
         paths,
-        fallback: true, // false or 'blocking'
+        fallback: false, // false or 'blocking'
     };
 };
 
@@ -31,6 +31,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     params,
 }) => {
     const post = getPostById(params?.postId ?? "");
+
     return {
         props: { post },
     };
