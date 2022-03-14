@@ -1,40 +1,16 @@
-import styled from "@emotion/styled";
 import { Layout } from "../components/Layout";
-import { PostCard } from "../components/PostCard/PostCard";
-import { getAllPost } from "../lib/posts";
-import { InferGetStaticPropsType, NextPage } from "next";
+import { NextPage } from "next";
+import useSWR from "swr";
+import { fetcher } from "../utils/fetcher";
+import { ApiPath } from "../lib/ApiPath";
+import { useState } from "react";
+import { Post } from "../types/Post";
 
-type Props = InferGetStaticPropsType<typeof getStaticProps>;
-
-export const getStaticProps = async () => {
-    const allPosts = getAllPost();
-    return {
-        props: { allPosts },
-    };
-};
-
-const Index: NextPage<Props> = (props) => {
-    return (
-        <Layout title="all post page">
-            <Flex>
-                {props.allPosts.map((post, idx) => (
-                    <PostCard
-                        key={`post_card_${idx}`}
-                        title={post.title}
-                        id={post.id}
-                    />
-                ))}
-            </Flex>
-        </Layout>
-    );
+const Index: NextPage = () => {
+    const { data, error } = useSWR(ApiPath.postId("2"), fetcher);
+    const [selectedPostId, setSelectedPostId] =
+        useState<null | Post["id"]>(null);
+    return <Layout title="unknown_archives"></Layout>;
 };
 
 export default Index;
-
-const Flex = styled.div({
-    display: "flex",
-    padding: "20px",
-    gap: "10px",
-    width: "600px",
-    margin: "0 auto",
-});

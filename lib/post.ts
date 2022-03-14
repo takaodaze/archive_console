@@ -1,17 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-
-export type Post = {
-    id: string;
-    content: string;
-    title: string;
-    date: string;
-};
+import { Post } from "../types/Post";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-function getAllPostFileName(): string[] {
+export function getAllPostFileName(): string[] {
     const foundDirs = fs.readdirSync(postsDirectory, { withFileTypes: true });
     const names = foundDirs
         .filter((dir) => dir.isFile())

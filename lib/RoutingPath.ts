@@ -1,5 +1,4 @@
-import { Post } from "./posts";
-
+import { Post } from "../types/Post";
 export class RoutingPath {
     private static POST = "/post";
     static post() {
