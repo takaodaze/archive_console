@@ -1,14 +1,26 @@
 import styled from "@emotion/styled";
+import { useContext } from "react";
 import { COLORS } from "../../constant/color";
+import { PostIdContext } from "../../Context/PostIdContext";
 import { Post } from "../../types/Post";
 
 type Props = {
+    id: Post["id"];
     title: Post["title"];
-    active: boolean;
+    active?: boolean;
 };
 
 export const PostItem = (props: Props) => {
-    return <Wrapper active={props.active}>{props.title}</Wrapper>;
+    const postIdContext = useContext(PostIdContext);
+
+    return (
+        <Wrapper
+            active={props.active}
+            onClick={() => postIdContext.setId(props.id)}
+        >
+            {props.title}
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.div((props: { active?: boolean }) => ({

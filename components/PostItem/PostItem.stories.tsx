@@ -13,9 +13,10 @@ const Template: ComponentStory<typeof PostItem> = (args) => (
 const commonArg: Parameters<typeof PostItem>[0] = {
     active: false,
     title: "unknown archive 1",
+    id: "1",
 };
 
 export const Normal = Template.bind({});
 Normal.args = { ...commonArg };
 export const Active = Template.bind({});
-Active.args = { active: true, title: "unknwon archive 2" };
+Active.args = { active: true, title: "unknwon archive 2", id: "2" };
