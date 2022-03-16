@@ -14,4 +14,4 @@ export const Layout = (props: { children?: ReactNode; title: string }) => {
     );
 };
 
-const Wrapper = styled.div({ padding: "20px" });
+const Wrapper = styled.div({ padding: "20px", height: "100vh" });

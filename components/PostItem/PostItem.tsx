@@ -16,7 +16,13 @@ export const PostItem = (props: Props) => {
     return (
         <Wrapper
             active={props.active}
-            onClick={() => postIdContext.setId(props.id)}
+            onClick={() => {
+                if (props.id === postIdContext.id) {
+                    postIdContext.setId(null);
+                } else {
+                    postIdContext.setId(props.id);
+                }
+            }}
         >
             {props.title}
         </Wrapper>

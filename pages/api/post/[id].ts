@@ -12,6 +12,7 @@ export default function handler(
         res.status(400);
         return;
     }
+
     const post = getPostById(requestPostId);
     res.status(200).json(post);
 }

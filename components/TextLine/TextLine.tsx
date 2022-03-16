@@ -14,15 +14,19 @@ export const TextLine = (props: Props) => {
         if (pointer < props.content.length) {
             setTimeout(() => {
                 setPointer((prev) => prev + 1);
-            }, props.duration);
+            }, 100);
         }
-    }, [pointer, props.content.length, props.duration]);
+    }, [pointer, props.content.length]);
+
+    useEffect(() => {
+        setPointer(0);
+    }, [props.content]);
 
     return <Wrapper>{redererText}</Wrapper>;
 };
 
 const Wrapper = styled.div({
-    padding: "5px",
     fontSize: "20px",
     minHeight: "25px",
+    whiteSpace: "pre-line",
 });
