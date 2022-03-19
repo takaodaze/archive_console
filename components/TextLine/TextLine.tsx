@@ -11,12 +11,11 @@ export const TextLine = (props: Props) => {
     const redererText = props.content.slice(0, pointer);
 
     useEffect(() => {
-        const timerId = window.setTimeout(() => {
+        window.setTimeout(() => {
             if (pointer < props.content.length) {
                 setPointer((prev) => prev + 1);
             }
         }, props.duration ?? 40);
-        console.log(timerId);
     }, [pointer, props.content.length, props.duration]);
 
     return <Wrapper>{redererText}</Wrapper>;
