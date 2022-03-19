@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 type Props = {
     content: string;
-    duration: number;
+    duration?: number;
 };
 
 export const TextLine = (props: Props) => {
@@ -11,16 +11,13 @@ export const TextLine = (props: Props) => {
     const redererText = props.content.slice(0, pointer);
 
     useEffect(() => {
-        if (pointer < props.content.length) {
-            setTimeout(() => {
+        const timerId = window.setTimeout(() => {
+            if (pointer < props.content.length) {
                 setPointer((prev) => prev + 1);
-            }, 100);
-        }
-    }, [pointer, props.content.length]);
-
-    useEffect(() => {
-        setPointer(0);
-    }, [props.content]);
+            }
+        }, props.duration ?? 40);
+        console.log(timerId);
+    }, [pointer, props.content.length, props.duration]);
 
     return <Wrapper>{redererText}</Wrapper>;
 };

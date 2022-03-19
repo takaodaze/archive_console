@@ -20,10 +20,11 @@ export const PostContentDisplay = () => {
     return (
         <Wrapper>
             {selected ? (
-                <>
+                // 記事が変わるときにマウント/アンマウントがReactの最適化により、されなかったので、毎度違うKey を振り、マウント/アンマウントを強制させる
+                <div key={new Date().getTime()}>
                     <TextLine duration={100} content={post?.title ?? ""} />
-                    <TextLine content={post?.content ?? ""} duration={80} />
-                </>
+                    <TextLine content={post?.content ?? ""} duration={10} />
+                </div>
             ) : (
                 <TextLine content="アーカイブを選んで下さい" duration={100} />
             )}
